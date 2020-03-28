@@ -21,7 +21,10 @@ namespace Bheithir
         private static void Main(string[] args)
         {
             Initialize();
-            while(true)
+            if (Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
+                return;
+
+            while (true)
             {
                 Update();
                 if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
@@ -89,9 +92,16 @@ namespace Bheithir
 
         private static void OnUpdate()
         {
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0].MainWindowTitle != windowTitle)
+            Process process;
+            try
             {
-                dos = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
+                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
+            }
+            catch(IndexOutOfRangeException) { return;  }
+
+            if(process.MainWindowTitle != windowTitle)
+            {
+                dos = process;
                 windowTitle = dos.MainWindowTitle;
                 setNewPresence();
             }
@@ -107,7 +117,12 @@ namespace Bheithir
                     i--;
                 }
             }
-            string status = new StringBuilder($"v{titleParts[0].Split(' ')[1]}").AppendFormat(", {0}, {1}", titleParts[1], titleParts[2]).ToString();
+            string status;
+            try
+            {
+                status = new StringBuilder($"v{titleParts[0].Split(' ')[1]}").AppendFormat(", {0}, {1}", titleParts[1], titleParts[2]).ToString();
+            }
+            catch(IndexOutOfRangeException) { return; }
 
             client.SetPresence(new RichPresence
             {
