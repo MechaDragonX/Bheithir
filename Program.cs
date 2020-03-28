@@ -109,7 +109,6 @@ namespace Bheithir
             }
             string status = new StringBuilder($"v{titleParts[0].Split(' ')[1]}").AppendFormat(", {0}, {1}", titleParts[1], titleParts[2]).ToString();
 
-
             client.SetPresence(new RichPresence
             {
                 Details = Regex.Split(titleParts[3], "\\s+")[1],
