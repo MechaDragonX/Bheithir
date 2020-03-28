@@ -15,8 +15,6 @@ namespace Bheithir
         private static Process dos;
         private static string windowTitle;
         private static Regex windowPattern = new Regex("(,\\s)+", RegexOptions.Compiled);
-        // private static string[] titleParts;
-        // private static string presenceDetails;
 
         private static void Main(string[] args)
         {
