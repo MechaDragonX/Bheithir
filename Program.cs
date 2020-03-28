@@ -12,12 +12,12 @@ namespace Bheithir
         static void Main(string[] args)
         {
             Initialize();
-
+            // Update();
             while(true)
             {
                 if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
                 {
-                    client.ClearPresence();
+                    Deinitialize();
                     Console.WriteLine("Thanks for using Bheithir!");
                     return;
                 }
@@ -26,16 +26,25 @@ namespace Bheithir
 
         static void Initialize()
         {
+            client = new DiscordRpcClient("693311130856325180");
+
             if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
             {
                 Console.WriteLine("DOSBox was not found! Is it open?");
                 return;
             }
-
             Process dos = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
             string currentWindowTitle = dos.MainWindowTitle;
 
-            client = new DiscordRpcClient("693311130856325180");
+            client.OnReady += (sender, e) =>
+            {
+                Console.WriteLine("Received Ready from user {0}", e.User.Username);
+            };
+            client.OnPresenceUpdate += (sender, e) =>
+            {
+                Console.WriteLine("Received Update! {0}", e.Presence);
+            };
+
             try
             {
                 client.Initialize();
@@ -64,6 +73,15 @@ namespace Bheithir
             }
         }
 
+        static void Update()
+        {
+            client.Invoke();
+        }
 
+        static void Deinitialize()
+        {
+            client.ClearPresence();
+            client.Dispose();
+        }
     }
 }
