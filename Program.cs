@@ -33,8 +33,22 @@ namespace Bheithir
             }
             Console.ResetColor();
             Console.WriteLine(emulator);
+
             IPresence presence = emulators[emulator];
-            presence.Execute();
+            presence.Initialize();
+            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
+                return;
+
+            while(true)
+            {
+                presence.Update();
+                if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
+                {
+                    presence.Deinitialize();
+                    Console.WriteLine("Thanks for using Bheithir!");
+                    return;
+                }
+            }
         }
     }
 }

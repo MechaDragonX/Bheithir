@@ -6,8 +6,6 @@ namespace Bheithir
 {
     interface IPresence
     {
-        void Execute();
-
         void Initialize();
         void Update();
         void Deinitialize();

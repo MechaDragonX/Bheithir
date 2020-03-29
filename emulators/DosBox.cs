@@ -17,24 +17,6 @@ namespace Bheithir.Emulators
 
         public DosBox() { }
 
-        public void Execute()
-        {
-            Initialize();
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
-                return;
-
-            while(true)
-            {
-                Update();
-                if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
-                {
-                    Deinitialize();
-                    Console.WriteLine("Thanks for using Bheithir!");
-                    return;
-                }
-            }
-        }
-
         public void Initialize()
         {
             client = new DiscordRpcClient("693311130856325180");
