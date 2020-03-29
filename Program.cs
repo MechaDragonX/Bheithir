@@ -15,7 +15,8 @@ namespace Bheithir
         private static Dictionary<string, IPresence> emulators = new Dictionary<string, IPresence>()
         {
             { "dosbox", new DosBox() },
-            { "fceux", new Fceux() }
+            { "fceux", new Fceux() },
+            { "snes9x", new Snes9x() }
         };
 
         private static void Main(string[] args)

@@ -8,10 +8,10 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - [MS-DOS](https://en.wikipedia.org/wiki/MS-DOS) emulator primarilly designed for playing games
 - [FCEUX](http://www.fceux.com/web/home.html)
     - [NES](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System)
-
-## What emulators will be supported in the future?
 - [SNES9X](http://www.snes9x.com/)
     - [SNES](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System)
+
+## What emulators will be supported in the future?
 - [Kega Fusion](https://segaretro.org/Kega_Fusion)
     - SEGA 8 and 16-bit systems including the [Master System](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System) and [Genesis / Mega Drive](https://en.wikipedia.org/wiki/Sega_Genesis)
 - [VBA-m](https://github.com/visualboyadvance-m/visualboyadvance-m)

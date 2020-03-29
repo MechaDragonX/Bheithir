@@ -8,26 +8,26 @@ using System.Text.RegularExpressions;
 
 namespace Bheithir.Emulators
 {
-    class Fceux : IPresence
+    class Snes9x : IPresence
     {
         private DiscordRpcClient client;
-        private Process famicom;
+        private Process super;
         private string windowTitle;
-        private readonly Regex windowPattern = new Regex("(:\\s)+", RegexOptions.Compiled);
+        private Regex windowPattern = new Regex("(\\s-\\s)(?!.*(\\s-\\s))", RegexOptions.Compiled);
 
-        public Fceux() { }
+        public Snes9x() { }
 
         public void Initialize()
         {
-            client = new DiscordRpcClient("693692813321437247");
+            client = new DiscordRpcClient("693881606309412874");
 
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).Count() == 0)
+            if (Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).Count() == 0)
             {
                 Console.WriteLine("FCEUX was not found! Is it open?");
                 return;
             }
-            famicom = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).ToList()[0];
-            windowTitle = famicom.MainWindowTitle;
+            super = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).ToList()[0];
+            windowTitle = super.MainWindowTitle;
 
             client.OnReady += (sender, e) => { };
             client.OnPresenceUpdate += (sender, e) => { };
@@ -44,7 +44,7 @@ namespace Bheithir.Emulators
             }
 
             try { SetNewPresence(); }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine($"Setting presence was not successful!\nERROR: {e.Message}");
                 return;
@@ -73,8 +73,8 @@ namespace Bheithir.Emulators
 
             if (process.MainWindowTitle != windowTitle)
             {
-                famicom = process;
-                windowTitle = famicom.MainWindowTitle;
+                super = process;
+                windowTitle = super.MainWindowTitle;
                 SetNewPresence();
             }
         }
@@ -83,14 +83,14 @@ namespace Bheithir.Emulators
             string details;
             try
             {
-                details = windowPattern.Split(windowTitle)[2];
+                details = windowPattern.Split(windowTitle)[0];
             }
             catch(Exception) { return; }
 
             string status;
-            try 
+            try
             {
-                status = windowPattern.Split(windowTitle)[0].Replace("FCEUX ", "v");
+                status = windowPattern.Split(windowTitle)[2].Replace("Snes9x ", "v");
             }
             catch(Exception) { return; }
 
@@ -101,8 +101,8 @@ namespace Bheithir.Emulators
                 Timestamps = new Timestamps(DateTime.UtcNow),
                 Assets = new Assets()
                 {
-                    LargeImageKey = "fc",
-                    LargeImageText = "FCEUX"
+                    LargeImageKey = "snes",
+                    LargeImageText = "Snes9x"
                 }
             });
             Console.WriteLine("Presence successfully set!");
