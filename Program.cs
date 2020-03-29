@@ -1,5 +1,4 @@
 ﻿using DiscordRPC;
-using DiscordRPC.Message;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +13,7 @@ namespace Bheithir
         private static DiscordRpcClient client;
         private static Process dos;
         private static string windowTitle;
-        private static Regex windowPattern = new Regex("(,\\s)+", RegexOptions.Compiled);
+        private static readonly Regex windowPattern = new Regex("(,\\s)+", RegexOptions.Compiled);
 
         private static void Main(string[] args)
         {
@@ -66,7 +65,7 @@ namespace Bheithir
                 return;
             }
 
-            try { setNewPresence(); }
+            try { SetNewPresence(); }
             catch(Exception e)
             {
                 Console.WriteLine($"Setting presence was not successful!\nERROR: {e.Message}");
@@ -101,10 +100,10 @@ namespace Bheithir
             {
                 dos = process;
                 windowTitle = dos.MainWindowTitle;
-                setNewPresence();
+                SetNewPresence();
             }
         }
-        private static void setNewPresence()
+        private static void SetNewPresence()
         {
             List<string> titleParts = windowPattern.Split(windowTitle).ToList();
             for(int i = 0; i < titleParts.Count; i++)
@@ -126,7 +125,12 @@ namespace Bheithir
             {
                 Details = Regex.Split(titleParts[3], "\\s+")[1],
                 State = status,
-                Timestamps = new Timestamps(DateTime.UtcNow)
+                Timestamps = new Timestamps(DateTime.UtcNow),
+                Assets = new Assets()
+                {
+                    LargeImageKey = "dos",
+                    LargeImageText = "DOSBox"
+                }
             });
             Console.WriteLine("Presence successfully set!");
         }
