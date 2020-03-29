@@ -22,4 +22,4 @@ Well...it's functional, but it doesn't look the way I want it to or have all the
 - Support for other emulators
 
 ## Special Thanks
-Special thanks to [BloodDragooner](https://github.com/BloodDragooner) for giving me the idea to this sort of thing with [SumatraPDF](https://github.com/sumatrapdfreader/sumatrapdf)! A lot of code was borrowed from that project, Chilong, so check it out [here](https://github.com/MechaDragonX/Chilong)!
+Special thanks to [BloodDragooner](https://github.com/BloodDragooner) for giving me the idea to do this sort of thing with [SumatraPDF](https://github.com/sumatrapdfreader/sumatrapdf)! A lot of code was borrowed from that project, Chilong, so check it out [here](https://github.com/MechaDragonX/Chilong)!
