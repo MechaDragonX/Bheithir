@@ -16,7 +16,6 @@ Since DOSBox an emulator for MS-DOS, an American operating system, I decided to 
 Well...it's functional, but it doesn't look the way I want it to or have all the features I want it to...so let's say it's *in progress*.
 
 ## Upcoming Features
-- Idle status when not using a program (currently shows up as `DOSBOX`)
 - A program icon
 - Running as a system tray application so that it can update the background and you don't need to worry about it
 - Support for other emulators
