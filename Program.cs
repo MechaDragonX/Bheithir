@@ -14,7 +14,8 @@ namespace Bheithir
     {
         private static Dictionary<string, IPresence> emulators = new Dictionary<string, IPresence>()
         {
-            { "dosbox", new DosBox() }
+            { "dosbox", new DosBox() },
+            { "fceux", new Fceux() }
         };
 
         private static void Main(string[] args)
@@ -36,13 +37,12 @@ namespace Bheithir
 
             IPresence presence = emulators[emulator];
             presence.Initialize();
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
+            if(Process.GetProcesses().Where(x => x.ProcessName.ToLower().StartsWith(emulator)).Count() == 0)
                 return;
-
             while(true)
             {
                 presence.Update();
-                if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
+                if(Process.GetProcesses().Where(x => x.ProcessName.ToLower().StartsWith(emulator)).Count() == 0)
                 {
                     presence.Deinitialize();
                     Console.WriteLine("Thanks for using Bheithir!");
