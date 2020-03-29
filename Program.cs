@@ -94,7 +94,7 @@ namespace Bheithir
             {
                 process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
             }
-            catch(IndexOutOfRangeException) { return;  }
+            catch(Exception) { return;  }
 
             if(process.MainWindowTitle != windowTitle)
             {
@@ -114,16 +114,27 @@ namespace Bheithir
                     i--;
                 }
             }
+
+            string details;
+            try
+            {
+                if (Regex.Split(titleParts[3], "\\s+")[1] == "DOSBOX")
+                    details = "Idling in the Command Line";
+                else
+                    details = Regex.Split(titleParts[3], "\\s+")[1];
+            }
+            catch(Exception) { return; }
+
             string status;
             try
             {
                 status = new StringBuilder($"v{titleParts[0].Split(' ')[1]}").AppendFormat(", {0}, {1}", titleParts[1], titleParts[2]).ToString();
             }
-            catch(IndexOutOfRangeException) { return; }
+            catch(Exception) { return; }
 
             client.SetPresence(new RichPresence
             {
-                Details = Regex.Split(titleParts[3], "\\s+")[1],
+                Details = details,
                 State = status,
                 Timestamps = new Timestamps(DateTime.UtcNow),
                 Assets = new Assets()
