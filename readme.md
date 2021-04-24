@@ -13,18 +13,18 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 
 ## What emulators will be supported in the future?
 - [Kega Fusion](https://segaretro.org/Kega_Fusion)
-    - SEGA 8 and 16-bit systems including the [Master System](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System) and [Genesis / Mega Drive](https://en.wikipedia.org/wiki/Sega_Genesis)
+    - SEGA 8 and 16-bit systems including the [Master System / Mark III](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System) and [Genesis / Mega Drive](https://en.wikipedia.org/wiki/Sega_Genesis)
 - [VBA-m](https://github.com/visualboyadvance-m/visualboyadvance-m)
     - [Game Boy](https://en.wikipedia.org/wiki/Game_Boy), [Game Boy Color](https://en.wikipedia.org/wiki/Game_Boy_Color), [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance)
 - [PCSX2](https://pcsx2.net/)
     - [PlayStation 2](https://en.wikipedia.org/wiki/PlayStation_2)
-- [Dolphin](https://dolphin-emu.org/)
-    - Nintendo [GameCube](https://en.wikipedia.org/wiki/GameCube) and [Wii](https://en.wikipedia.org/wiki/Wii)
 - [DeSmuME](http://desmume.org/)
     - [Nintendo DS](https://en.wikipedia.org/wiki/Nintendo_DS)
+- [ePSXe](https://www.epsxe.com/)
+    - [PlayStation 1](https://en.wikipedia.org/wiki/PlayStation_(console))
 
 ## How do I run it?
-You can get the latest binary from the [releases tab](https://github.com/MechaDragonX/Bheithir/releases). Bheithir runs on it's own and is entirely seperate from DOSBox. **This is not a plugin. Bheithir works with all versions of DOSBox for Windows.**
+You can get the latest binary from the [releases tab](https://github.com/MechaDragonX/Bheithir/releases). Bheithir runs on it's own and is entirely seperate from all emulators supported. **This is not a plugin. Bheithir works with all versions of these emulators for Windows.**
 
 ## Is it functional?
 At the moment it should be... Check the [issues](https://github.com/MechaDragonX/Bheithir/issues) tab for any issues.
