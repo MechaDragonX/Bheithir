@@ -8,14 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace Bheithir.Emulators
 {
-    class Fceux : IPresence
+    class Fceux : Presence, IPresence
     {
-        private DiscordRpcClient client;
-        private Process famicom;
-        private string windowTitle;
-        private readonly Regex windowPattern = new Regex("(:\\s)+", RegexOptions.Compiled);
-
-        public Fceux() { }
+        public Fceux()
+        {
+            windowPattern = new Regex("(:\\s)+", RegexOptions.Compiled);
+        }
 
         public void Initialize()
         {
@@ -26,8 +24,8 @@ namespace Bheithir.Emulators
                 Console.WriteLine("FCEUX was not found! Is it open?");
                 return;
             }
-            famicom = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).ToList()[0];
-            windowTitle = famicom.MainWindowTitle;
+            emulator = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).ToList()[0];
+            windowTitle = emulator.MainWindowTitle;
 
             client.OnReady += (sender, e) => { };
             client.OnPresenceUpdate += (sender, e) => { };
@@ -73,8 +71,8 @@ namespace Bheithir.Emulators
 
             if(process.MainWindowTitle != windowTitle)
             {
-                famicom = process;
-                windowTitle = famicom.MainWindowTitle;
+                emulator = process;
+                windowTitle = emulator.MainWindowTitle;
                 SetNewPresence();
             }
         }

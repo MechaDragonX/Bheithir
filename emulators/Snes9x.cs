@@ -8,14 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace Bheithir.Emulators
 {
-    class Snes9x : IPresence
+    class Snes9x : Presence, IPresence
     {
-        private DiscordRpcClient client;
-        private Process super;
-        private string windowTitle;
-        private Regex windowPattern = new Regex("(\\s-\\s)(?!.*(\\s-\\s))", RegexOptions.Compiled);
-
-        public Snes9x() { }
+        public Snes9x()
+        {
+            windowPattern = new Regex("(\\s-\\s)(?!.*(\\s-\\s))", RegexOptions.Compiled);
+        }
 
         public void Initialize()
         {
@@ -26,8 +24,8 @@ namespace Bheithir.Emulators
                 Console.WriteLine("Snes9x was not found! Is it open?");
                 return;
             }
-            super = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).ToList()[0];
-            windowTitle = super.MainWindowTitle;
+            emulator = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).ToList()[0];
+            windowTitle = emulator.MainWindowTitle;
 
             client.OnReady += (sender, e) => { };
             client.OnPresenceUpdate += (sender, e) => { };
@@ -73,8 +71,8 @@ namespace Bheithir.Emulators
 
             if(process.MainWindowTitle != windowTitle)
             {
-                super = process;
-                windowTitle = super.MainWindowTitle;
+                emulator = process;
+                windowTitle = emulator.MainWindowTitle;
                 SetNewPresence();
             }
         }

@@ -8,14 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace Bheithir.Emulators
 {
-    class DosBox : IPresence
+    class DosBox : Presence, IPresence
     {
-        private DiscordRpcClient client;
-        private Process dos;
-        private string windowTitle;
-        private readonly Regex windowPattern = new Regex("(,\\s)+", RegexOptions.Compiled);
-
-        public DosBox() { }
+        public DosBox()
+        {
+            windowPattern = new Regex("(,\\s)+", RegexOptions.Compiled);
+        }
 
         public void Initialize()
         {
@@ -26,8 +24,8 @@ namespace Bheithir.Emulators
                 Console.WriteLine("DOSBox was not found! Is it open?");
                 return;
             }
-            dos = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
-            windowTitle = dos.MainWindowTitle;
+            emulator = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
+            windowTitle = emulator.MainWindowTitle;
 
             client.OnReady += (sender, e) => { };
             client.OnPresenceUpdate += (sender, e) => { };
@@ -73,8 +71,8 @@ namespace Bheithir.Emulators
 
             if(process.MainWindowTitle != windowTitle)
             {
-                dos = process;
-                windowTitle = dos.MainWindowTitle;
+                emulator = process;
+                windowTitle = emulator.MainWindowTitle;
                 SetNewPresence();
             }
         }
