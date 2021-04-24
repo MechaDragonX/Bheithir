@@ -16,7 +16,8 @@ namespace Bheithir
         {
             { "dosbox", new DosBox() },
             { "fceux", new Fceux() },
-            { "snes9x", new Snes9x() }
+            { "snes9x", new Snes9x() },
+            { "fusion", new Fusion() }
         };
 
         private static void Main(string[] args)
