@@ -34,7 +34,6 @@ namespace Bheithir
                 Console.WriteLine("You misspelled the emulator name or that emulator is not supported!\n");
             }
             Console.ResetColor();
-            Console.WriteLine(emulator);
 
             IPresence presence = emulators[emulator];
             presence.Initialize();

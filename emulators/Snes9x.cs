@@ -21,7 +21,7 @@ namespace Bheithir.Emulators
         {
             client = new DiscordRpcClient("693881606309412874");
 
-            if (Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).Count() == 0)
+            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).Count() == 0)
             {
                 Console.WriteLine("Snes9x was not found! Is it open?");
                 return;
@@ -44,7 +44,7 @@ namespace Bheithir.Emulators
             }
 
             try { SetNewPresence(); }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine($"Setting presence was not successful!\nERROR: {e.Message}");
                 return;
@@ -71,7 +71,7 @@ namespace Bheithir.Emulators
             }
             catch (Exception) { return; }
 
-            if (process.MainWindowTitle != windowTitle)
+            if(process.MainWindowTitle != windowTitle)
             {
                 super = process;
                 windowTitle = super.MainWindowTitle;
@@ -84,29 +84,43 @@ namespace Bheithir.Emulators
             string details;
             try
             {
-                details = titleParts[0];
+                if(titleParts.Length == 1)
+                    details = "Idling with the Super Scope";
+                else
+                    details = titleParts[0];
             }
             catch(Exception) { return; }
 
             string status;
             try
             {
-                status = titleParts[2].Replace("Snes9x ", "v");
+                if(titleParts.Length == 1)
+                    status = titleParts[0].Replace("Snes9x ", "v");
+                else
+                    status = titleParts[2].Replace("Snes9x ", "v");
             }
             catch(Exception) { return; }
 
-            client.SetPresence(new RichPresence
+            try
             {
-                Details = details,
-                State = status,
-                Timestamps = new Timestamps(DateTime.UtcNow),
-                Assets = new Assets()
+                client.SetPresence(new RichPresence
                 {
-                    LargeImageKey = "snes",
-                    LargeImageText = "Snes9x"
-                }
-            });
-            Console.WriteLine("Presence successfully set!");
+                    Details = details,
+                    State = status,
+                    Timestamps = new Timestamps(DateTime.UtcNow),
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "snes",
+                        LargeImageText = "Snes9x"
+                    }
+                });
+                Console.WriteLine("Presence successfully set!");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Presence was not set successfully!");
+                return;
+            }
         }
     }
 }

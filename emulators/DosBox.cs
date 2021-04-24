@@ -83,7 +83,7 @@ namespace Bheithir.Emulators
             List<string> titleParts = windowPattern.Split(windowTitle).ToList();
             for(int i = 0; i < titleParts.Count; i++)
             {
-                if (titleParts[i] == ", ")
+                if(titleParts[i] == ", ")
                 {
                     titleParts.Remove(titleParts[i]);
                     i--;
@@ -107,18 +107,26 @@ namespace Bheithir.Emulators
             }
             catch(Exception) { return; }
 
-            client.SetPresence(new RichPresence
+            try
             {
-                Details = details,
-                State = status,
-                Timestamps = new Timestamps(DateTime.UtcNow),
-                Assets = new Assets()
+                client.SetPresence(new RichPresence
                 {
-                    LargeImageKey = "dos",
-                    LargeImageText = "DOSBox"
-                }
-            });
-            Console.WriteLine("Presence successfully set!");
+                    Details = details,
+                    State = status,
+                    Timestamps = new Timestamps(DateTime.UtcNow),
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "dos",
+                        LargeImageText = "DOSBox"
+                    }
+                });
+                Console.WriteLine("Presence successfully set!");
+            }
+            catch(Exception)
+            {
+                Console.WriteLine("Presence was not set successfully!");
+                return;
+            }
         }
     }
 }

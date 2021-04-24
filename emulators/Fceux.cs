@@ -37,7 +37,7 @@ namespace Bheithir.Emulators
                 client.Initialize();
                 Console.WriteLine("Successfully connected to client!");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine($"Connection to client was not successful!\nERROR: {e.Message}");
                 return;
@@ -69,9 +69,9 @@ namespace Bheithir.Emulators
             {
                 process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).ToList()[0];
             }
-            catch (Exception) { return; }
+            catch(Exception) { return; }
 
-            if (process.MainWindowTitle != windowTitle)
+            if(process.MainWindowTitle != windowTitle)
             {
                 famicom = process;
                 windowTitle = famicom.MainWindowTitle;
@@ -84,7 +84,10 @@ namespace Bheithir.Emulators
             string details;
             try
             {
-                details = titleParts[2];
+                if (titleParts.Length == 1)
+                    details = "Idling with the Power Glove";
+                else
+                    details = titleParts[2];
             }
             catch(Exception) { return; }
 
@@ -95,18 +98,26 @@ namespace Bheithir.Emulators
             }
             catch(Exception) { return; }
 
-            client.SetPresence(new RichPresence
+            try
             {
-                Details = details,
-                State = status,
-                Timestamps = new Timestamps(DateTime.UtcNow),
-                Assets = new Assets()
+                client.SetPresence(new RichPresence
                 {
-                    LargeImageKey = "fc",
-                    LargeImageText = "FCEUX"
-                }
-            });
-            Console.WriteLine("Presence successfully set!");
+                    Details = details,
+                    State = status,
+                    Timestamps = new Timestamps(DateTime.UtcNow),
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "fceux",
+                        LargeImageText = "FCEUX"
+                    }
+                });
+                Console.WriteLine("Presence successfully set!");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Presence was not set successfully!");
+                return;
+            }
         }
     }
 }
