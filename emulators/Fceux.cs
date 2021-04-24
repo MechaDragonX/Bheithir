@@ -80,17 +80,18 @@ namespace Bheithir.Emulators
         }
         public void SetNewPresence()
         {
+            string[] titleParts = windowPattern.Split(windowTitle);
             string details;
             try
             {
-                details = windowPattern.Split(windowTitle)[2];
+                details = titleParts[2];
             }
             catch(Exception) { return; }
 
             string status;
             try 
             {
-                status = windowPattern.Split(windowTitle)[0].Replace("FCEUX ", "v");
+                status = titleParts[0].Replace("FCEUX ", "v");
             }
             catch(Exception) { return; }
 

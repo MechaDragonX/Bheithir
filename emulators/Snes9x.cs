@@ -23,7 +23,7 @@ namespace Bheithir.Emulators
 
             if (Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).Count() == 0)
             {
-                Console.WriteLine("FCEUX was not found! Is it open?");
+                Console.WriteLine("Snes9x was not found! Is it open?");
                 return;
             }
             super = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).ToList()[0];
@@ -67,7 +67,7 @@ namespace Bheithir.Emulators
             Process process;
             try
             {
-                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).ToList()[0];
+                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).ToList()[0];
             }
             catch (Exception) { return; }
 
@@ -80,17 +80,18 @@ namespace Bheithir.Emulators
         }
         public void SetNewPresence()
         {
+            string[] titleParts = windowPattern.Split(windowTitle);
             string details;
             try
             {
-                details = windowPattern.Split(windowTitle)[0];
+                details = titleParts[0];
             }
             catch(Exception) { return; }
 
             string status;
             try
             {
-                status = windowPattern.Split(windowTitle)[2].Replace("Snes9x ", "v");
+                status = titleParts[2].Replace("Snes9x ", "v");
             }
             catch(Exception) { return; }
 

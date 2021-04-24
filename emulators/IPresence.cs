@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bheithir
+namespace Bheithir.Emulators
 {
     interface IPresence
     {
