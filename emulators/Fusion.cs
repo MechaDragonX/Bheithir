@@ -89,13 +89,41 @@ namespace Bheithir.Emulators
             }
             catch(Exception) { return; }
 
-            string status;
+            string status = "";
             try
             {
                 if(titleParts.Count == 1)
                     status = titleParts[0].Replace("Fusion ", "v").Replace(" (C) Steve Snake, 2010.", "");
                 else
-                    status = titleParts[1] + ", " + titleParts[0].Replace("Fusion ", "v");
+                {
+                    if(titleParts[1].Contains(' ') || titleParts[1] == "Genesis")
+                        status = titleParts[1] + " | " + titleParts[0].Replace("Fusion ", "v");
+                    else
+                    {
+                        switch(titleParts[1])
+                        {
+                            case "GameGear":
+                                status = "Game Gear";
+                                break;
+                            case "MegaDrive":
+                                status = "Mega Drive";
+                                break;
+                            case "MegaDrive/32X":
+                                status = "Mega Drive / 32X";
+                                break;
+                            case "Genesis/32X":
+                                status = "Genesis / 32X";
+                                break;
+                            case "MegaCD":
+                                status = "Mega CD";
+                                break;
+                            case "SegaCD":
+                                status = "Sega CD";
+                                break;
+                        }
+                        status += " | " + titleParts[0].Replace("Fusion ", "v");
+                    }
+                }
             }
             catch(Exception) { return; }
 
