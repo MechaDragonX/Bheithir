@@ -8,12 +8,13 @@ namespace Bheithir
 {
     class Program
     {
-        private static Dictionary<string, IPresence> emulators = new Dictionary<string, IPresence>()
+        private static Dictionary<string, Presence> emulators = new Dictionary<string, Presence>()
         {
             { "dosbox", new DosBox() },
             { "fceux", new Fceux() },
             { "snes9x", new Snes9x() },
-            { "fusion", new Fusion() }
+            { "fusion", new Fusion() },
+            { "vbam", new Vbam() }
         };
 
         private static void Main(string[] args)
@@ -32,14 +33,14 @@ namespace Bheithir
             }
             Console.ResetColor();
 
-            IPresence presence = emulators[emulator];
+            Presence presence = emulators[emulator];
             presence.Initialize();
-            if(Process.GetProcesses().Where(x => x.ProcessName.ToLower().StartsWith(emulator)).Count() == 0)
+            if(!Process.GetProcesses().Where(x => x.ProcessName == presence.Process.ProcessName).Any())
                 return;
             while(true)
             {
                 presence.Update();
-                if(Process.GetProcesses().Where(x => x.ProcessName.ToLower().StartsWith(emulator)).Count() == 0)
+                if(!Process.GetProcesses().Where(x => x.ProcessName == presence.Process.ProcessName).Any())
                 {
                     presence.Deinitialize();
                     Console.WriteLine("Thanks for using Bheithir!");

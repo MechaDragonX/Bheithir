@@ -6,14 +6,14 @@ using System.Text.RegularExpressions;
 
 namespace Bheithir.Emulators
 {
-    class Fceux : Presence, IPresence
+    class Fceux : Presence
     {
         public Fceux()
         {
             windowPattern = new Regex("(:\\s)+", RegexOptions.Compiled);
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             client = new DiscordRpcClient("693692813321437247");
 
@@ -22,8 +22,8 @@ namespace Bheithir.Emulators
                 Console.WriteLine("FCEUX was not found! Is it open?");
                 return;
             }
-            emulator = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).ToList()[0];
-            windowTitle = emulator.MainWindowTitle;
+            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).ToList()[0];
+            windowTitle = Process.MainWindowTitle;
 
             client.OnReady += (sender, e) => { };
             client.OnPresenceUpdate += (sender, e) => { };
@@ -46,19 +46,19 @@ namespace Bheithir.Emulators
                 return;
             }
         }
-        public void Update()
+        public override void Update()
         {
             client.OnPresenceUpdate += (sender, e) => { };
             client.Invoke();
             OnUpdate();
         }
-        public void Deinitialize()
+        public override void Deinitialize()
         {
             client.ClearPresence();
             client.Dispose();
         }
 
-        public void OnUpdate()
+        public override void OnUpdate()
         {
             Process process;
             try
@@ -69,12 +69,12 @@ namespace Bheithir.Emulators
 
             if(process.MainWindowTitle != windowTitle)
             {
-                emulator = process;
-                windowTitle = emulator.MainWindowTitle;
+                Process = process;
+                windowTitle = Process.MainWindowTitle;
                 SetNewPresence();
             }
         }
-        public void SetNewPresence()
+        public override void SetNewPresence()
         {
             string[] titleParts = windowPattern.Split(windowTitle);
             string details;

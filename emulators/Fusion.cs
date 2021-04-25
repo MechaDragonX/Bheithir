@@ -7,14 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace Bheithir.Emulators
 {
-    class Fusion : Presence, IPresence
+    class Fusion : Presence
     {
         public Fusion()
         {
             windowPattern = new Regex("(\\s-\\s)", RegexOptions.Compiled);
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             client = new DiscordRpcClient("835587751239090187");
 
@@ -23,8 +23,8 @@ namespace Bheithir.Emulators
                 Console.WriteLine("Fusion was not found! Is it open?");
                 return;
             }
-            emulator = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("Fusion")).ToList()[0];
-            windowTitle = emulator.MainWindowTitle;
+            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("Fusion")).ToList()[0];
+            windowTitle = Process.MainWindowTitle;
 
             client.OnReady += (sender, e) => { };
             client.OnPresenceUpdate += (sender, e) => { };
@@ -47,19 +47,19 @@ namespace Bheithir.Emulators
                 return;
             }
         }
-        public void Update()
+        public override void Update()
         {
             client.OnPresenceUpdate += (sender, e) => { };
             client.Invoke();
             OnUpdate();
         }
-        public void Deinitialize()
+        public override void Deinitialize()
         {
             client.ClearPresence();
             client.Dispose();
         }
 
-        public void OnUpdate()
+        public override void OnUpdate()
         {
             Process process;
             try
@@ -70,12 +70,12 @@ namespace Bheithir.Emulators
 
             if(process.MainWindowTitle != windowTitle)
             {
-                emulator = process;
-                windowTitle = emulator.MainWindowTitle;
+                Process = process;
+                windowTitle = Process.MainWindowTitle;
                 SetNewPresence();
             }
         }
-        public void SetNewPresence()
+        public override void SetNewPresence()
         {
             List<string> titleParts = windowPattern.Split(windowTitle).ToList();
             titleParts.RemoveAll(x => x == " - ");
