@@ -34,7 +34,7 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 ### Earliest Known Supported Versions
 - OS
     - Windows 7 x86 (32-bit)
-        - x86_64 (64-bit) and ARM version of Windows are supported as well, but builds targed x86.
+        - x86_64 (64-bit) and ARM version of Windows are supported as well, but builds target x86.
     - Anything older is not supported whatsoever.
 - .NET
     - v5.0
