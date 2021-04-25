@@ -10,7 +10,7 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - [NES](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System)
 - [SNES9X](http://www.snes9x.com/)
     - [SNES](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System)
-- [Kega Fusion](https://segaretro.org/Kega_Fusion)
+- [Fusion](https://segaretro.org/Kega_Fusion)
     - SEGA 8 and 16-bit systems including the [Master System / Mark III](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System) and [Genesis / Mega Drive](https://en.wikipedia.org/wiki/Sega_Genesis)
 - [VBA-M](https://github.com/visualboyadvance-m/visualboyadvance-m)
     - [Game Boy](https://en.wikipedia.org/wiki/Game_Boy), [Game Boy Color](https://en.wikipedia.org/wiki/Game_Boy_Color), [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance)
@@ -24,7 +24,30 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - [PlayStation 1](https://en.wikipedia.org/wiki/PlayStation_(console))
 
 ## How do I run it?
-You can get the latest binary from the [releases tab](https://github.com/MechaDragonX/Bheithir/releases). Bheithir runs on it's own and is entirely seperate from all emulators supported. **This is not a plugin. Bheithir works with all versions of these emulators for Windows.**
+- You can get the latest binary from the [releases](https://github.com/MechaDragonX/Bheithir/releases) pages.
+- **All builds are framework-dependent!** Please follow the instructions for your OS to download .NET 5 [here](https://dotnet.microsoft.com/download/dotnet/5.0)**
+- Bheithir runs on it's own and is entirely seperate from all emulators supported. **This is not a plugin!**
+- Bheithir works with all versions of these emulators after the first release where support was added
+    - Since this program is dependant on the text in the window title, it is possible earlier or future releases are not supported.
+    - If the presence does not look right, please leave an [issue](https://github.com/MechaDragonX/Bheithir/issues)!
+
+### Earliest Supported Versions
+- OS
+    - Windows 7 x86 (32-bit)
+- DOSBox
+    - x86 (32-bit)
+    - v0.74-3
+- FCEUX
+    - x86 (32-bit)
+    - v2.2.3
+- Snes9x
+    - x86 (32-bit), x86_64 (64-bit)
+- Fusion
+    - x86 (32-bit)
+    - v3.64
+- VBA-M
+    - x86 (32-bit), x86_64 (64-bit)
+    - v2.1.4
 
 ## Is it functional?
 At the moment it should be... Check the [issues](https://github.com/MechaDragonX/Bheithir/issues) tab for any issues.
