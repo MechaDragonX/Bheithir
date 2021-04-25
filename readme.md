@@ -12,10 +12,10 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - [SNES](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System)
 - [Kega Fusion](https://segaretro.org/Kega_Fusion)
     - SEGA 8 and 16-bit systems including the [Master System / Mark III](https://en.wikipedia.org/wiki/Super_Nintendo_Entertainment_System) and [Genesis / Mega Drive](https://en.wikipedia.org/wiki/Sega_Genesis)
+- [VBA-M](https://github.com/visualboyadvance-m/visualboyadvance-m)
+    - [Game Boy](https://en.wikipedia.org/wiki/Game_Boy), [Game Boy Color](https://en.wikipedia.org/wiki/Game_Boy_Color), [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance)
 
 ## What emulators will be supported in the future?
-- [VBA-m](https://github.com/visualboyadvance-m/visualboyadvance-m)
-    - [Game Boy](https://en.wikipedia.org/wiki/Game_Boy), [Game Boy Color](https://en.wikipedia.org/wiki/Game_Boy_Color), [Game Boy Advance](https://en.wikipedia.org/wiki/Game_Boy_Advance)
 - [PCSX2](https://pcsx2.net/)
     - [PlayStation 2](https://en.wikipedia.org/wiki/PlayStation_2)
 - [DeSmuME](http://desmume.org/)
