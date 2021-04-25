@@ -25,7 +25,7 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 
 ## How do I run it?
 - You can get the latest binary from the [releases](https://github.com/MechaDragonX/Bheithir/releases) pages.
-- **All builds are framework-dependent!** Please follow the instructions for your OS to download .NET 5 [here](https://dotnet.microsoft.com/download/dotnet/5.0)**
+- **All builds are framework-dependent!** Please follow the instructions for your OS to download .NET 5 [here](https://dotnet.microsoft.com/download/dotnet/5.0)
 - Bheithir runs on it's own and is entirely seperate from all emulators supported. **This is not a plugin!**
 - Bheithir works with all versions of these emulators after the first release where support was added
     - Since this program is dependant on the text in the window title, it is possible earlier or future releases are not supported.
@@ -42,6 +42,7 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - v2.2.3
 - Snes9x
     - x86 (32-bit), x86_64 (64-bit)
+    - v1.60
 - Fusion
     - x86 (32-bit)
     - v3.64
