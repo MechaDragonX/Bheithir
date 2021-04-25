@@ -18,7 +18,7 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 ## What emulators will be supported in the future?
 - [PCSX2](https://pcsx2.net/)
     - [PlayStation 2](https://en.wikipedia.org/wiki/PlayStation_2)
-- [DeSmuME](http://desmume.org/)
+- [DeSmuME](http://desmume.org/) and [melonDS](http://melonds.kuribo64.net/)
     - [Nintendo DS](https://en.wikipedia.org/wiki/Nintendo_DS)
 - [ePSXe](https://www.epsxe.com/)
     - [PlayStation 1](https://en.wikipedia.org/wiki/PlayStation_(console))
@@ -31,11 +31,14 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - Since this program is dependant on the text in the window title, it is possible earlier or future releases are not supported.
     - If the presence does not look right, please leave an [issue](https://github.com/MechaDragonX/Bheithir/issues)!
 
-### Earliest Supported Versions
+### Earliest Known Supported Versions
 - OS
     - Windows 7 x86 (32-bit)
+        - x86_64 (64-bit) and ARM version of Windows are supported as well, but builds targed x86.
+    - Anything older is not supported whatsoever.
 - .NET
     - v5.0
+    - Anything older is not supported whatsover.
 - DOSBox
     - x86 (32-bit)
     - v0.74-3
