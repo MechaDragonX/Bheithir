@@ -22,6 +22,16 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - [Nintendo DS](https://en.wikipedia.org/wiki/Nintendo_DS)
 - [ePSXe](https://www.epsxe.com/)
     - [PlayStation 1](https://en.wikipedia.org/wiki/PlayStation_(console))
+- [MAME](https://www.mamedev.org/)
+    - Emulates a variety of arcade systems and vintage computers
+    - [List of supported systems](https://emulation.gametechwiki.com/index.php/MAME_compatibility_list)
+- Other popular emulators for the consoles supported and consoles planned to be supported
+- [RetroArch](https://www.retroarch.com/)
+    - The most popular and widely supported multi-system emulator, as it has been ported to everything imaginable
+    - [List of supported systems](https://emulation.gametechwiki.com/index.php/Libretro#Cores)
+- [BizHawk](http://tasvideos.org/BizHawk.html)
+    - Multi-system, focused on TAS creation, supports [Libretro](https://docs.libretro.com/) cores (less accurately, but more popularly, referred to as [RetroArch](https://www.retroarch.com/) cores)
+    - [List of supported systems](https://emulation.gametechwiki.com/index.php/BizHawk#Supported_systems)
 
 ## How do I run it?
 - You can get the latest binary from the [releases](https://github.com/MechaDragonX/Bheithir/releases) pages.
