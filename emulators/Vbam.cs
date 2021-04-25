@@ -109,7 +109,7 @@ namespace Bheithir.Emulators
                     Assets = new Assets()
                     {
                         LargeImageKey = "gb",
-                        LargeImageText = "Vbam"
+                        LargeImageText = "VBA-M"
                     }
                 });
                 Console.WriteLine("Presence successfully set!");
