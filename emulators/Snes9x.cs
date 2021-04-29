@@ -17,7 +17,7 @@ namespace Bheithir.Emulators
         {
             client = new DiscordRpcClient("693881606309412874");
 
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).Count() == 0)
+            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).Any())
             {
                 Console.WriteLine("Snes9x was not found! Is it open?");
                 return;

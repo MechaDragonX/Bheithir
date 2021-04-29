@@ -17,7 +17,7 @@ namespace Bheithir.Emulators
         {
             client = new DiscordRpcClient("693692813321437247");
 
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).Count() == 0)
+            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith("fceux")).Any())
             {
                 Console.WriteLine("FCEUX was not found! Is it open?");
                 return;

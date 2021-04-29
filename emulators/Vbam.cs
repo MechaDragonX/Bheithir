@@ -18,7 +18,7 @@ namespace Bheithir.Emulators
         {
             client = new DiscordRpcClient("835659303808532601");
 
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("visualboyadvance-m")).Count() == 0)
+            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith("visualboyadvance-m")).Any())
             {
                 Console.WriteLine("Vbam was not found! Is it open?");
                 return;

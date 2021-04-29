@@ -19,7 +19,7 @@ namespace Bheithir.Emulators
         {
             client = new DiscordRpcClient("693311130856325180");
 
-            if(Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Count() == 0)
+            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Any())
             {
                 Console.WriteLine("DOSBox was not found! Is it open?");
                 return;
