@@ -10,27 +10,29 @@ namespace Bheithir.Emulators
     {
         public Snes9x()
         {
-            windowPattern = new Regex("(\\s-\\s)(?!.*(\\s-\\s))", RegexOptions.Compiled);
+            DiscordAppId = "693881606309412874";
+            ProcessName = "snes9x";
+            WindowPattern = new Regex("(\\s-\\s)(?!.*(\\s-\\s))", RegexOptions.Compiled);
         }
 
         public override void Initialize()
         {
-            client = new DiscordRpcClient("693881606309412874");
+            Client = new DiscordRpcClient(DiscordAppId);
 
-            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).Any())
+            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).Any())
             {
                 Console.WriteLine("Snes9x was not found! Is it open?");
                 return;
             }
-            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).ToList()[0];
-            windowTitle = Process.MainWindowTitle;
+            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).ToList()[0];
+            WindowTitle = Process.MainWindowTitle;
 
-            client.OnReady += (sender, e) => { };
-            client.OnPresenceUpdate += (sender, e) => { };
+            Client.OnReady += (sender, e) => { };
+            Client.OnPresenceUpdate += (sender, e) => { };
 
             try
             {
-                client.Initialize();
+                Client.Initialize();
                 Console.WriteLine("Successfully connected to client!");
             }
             catch (Exception e)
@@ -48,14 +50,14 @@ namespace Bheithir.Emulators
         }
         public override void Update()
         {
-            client.OnPresenceUpdate += (sender, e) => { };
-            client.Invoke();
+            Client.OnPresenceUpdate += (sender, e) => { };
+            Client.Invoke();
             OnUpdate();
         }
         public override void Deinitialize()
         {
-            client.ClearPresence();
-            client.Dispose();
+            Client.ClearPresence();
+            Client.Dispose();
         }
 
         public override void OnUpdate()
@@ -63,20 +65,20 @@ namespace Bheithir.Emulators
             Process process;
             try
             {
-                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("snes9x")).ToList()[0];
+                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).ToList()[0];
             }
-            catch (Exception) { return; }
+            catch(Exception) { return; }
 
-            if(process.MainWindowTitle != windowTitle)
+            if(process.MainWindowTitle != WindowTitle)
             {
                 Process = process;
-                windowTitle = Process.MainWindowTitle;
+                WindowTitle = Process.MainWindowTitle;
                 SetNewPresence();
             }
         }
         public override void SetNewPresence()
         {
-            string[] titleParts = windowPattern.Split(windowTitle);
+            string[] titleParts = WindowPattern.Split(WindowTitle);
             string details;
             try
             {
@@ -99,7 +101,7 @@ namespace Bheithir.Emulators
 
             try
             {
-                client.SetPresence(new RichPresence
+                Client.SetPresence(new RichPresence
                 {
                     Details = details,
                     State = status,

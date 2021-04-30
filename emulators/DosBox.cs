@@ -12,27 +12,29 @@ namespace Bheithir.Emulators
     {
         public DosBox()
         {
-            windowPattern = new Regex("(,\\s)+", RegexOptions.Compiled);
+            DiscordAppId = "693311130856325180";
+            ProcessName = "DOSBox";
+            WindowPattern = new Regex("(,\\s)+", RegexOptions.Compiled);
         }
 
         public override void Initialize()
         {
-            client = new DiscordRpcClient("693311130856325180");
+            Client = new DiscordRpcClient(DiscordAppId);
 
-            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).Any())
+            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).Any())
             {
                 Console.WriteLine("DOSBox was not found! Is it open?");
                 return;
             }
-            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
-            windowTitle = Process.MainWindowTitle;
+            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).ToList()[0];
+            WindowTitle = Process.MainWindowTitle;
 
-            client.OnReady += (sender, e) => { };
-            client.OnPresenceUpdate += (sender, e) => { };
+            Client.OnReady += (sender, e) => { };
+            Client.OnPresenceUpdate += (sender, e) => { };
 
             try
             {
-                client.Initialize();
+                Client.Initialize();
                 Console.WriteLine("Successfully connected to client!");
             }
             catch(Exception e)
@@ -50,14 +52,14 @@ namespace Bheithir.Emulators
         }
         public override void Update()
         {
-            client.OnPresenceUpdate += (sender, e) => { };
-            client.Invoke();
+            Client.OnPresenceUpdate += (sender, e) => { };
+            Client.Invoke();
             OnUpdate();
         }
         public override void Deinitialize()
         {
-            client.ClearPresence();
-            client.Dispose();
+            Client.ClearPresence();
+            Client.Dispose();
         }
 
         public override void OnUpdate()
@@ -65,20 +67,20 @@ namespace Bheithir.Emulators
             Process process;
             try
             {
-                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("DOSBox")).ToList()[0];
+                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).ToList()[0];
             }
             catch (Exception) { return; }
 
-            if(process.MainWindowTitle != windowTitle)
+            if(process.MainWindowTitle != WindowTitle)
             {
                 Process = process;
-                windowTitle = Process.MainWindowTitle;
+                WindowTitle = Process.MainWindowTitle;
                 SetNewPresence();
             }
         }
         public override void SetNewPresence()
         {
-            List<string> titleParts = windowPattern.Split(windowTitle).ToList();
+            List<string> titleParts = WindowPattern.Split(WindowTitle).ToList();
             for(int i = 0; i < titleParts.Count; i++)
             {
                 if(titleParts[i] == ", ")
@@ -107,7 +109,7 @@ namespace Bheithir.Emulators
 
             try
             {
-                client.SetPresence(new RichPresence
+                Client.SetPresence(new RichPresence
                 {
                     Details = details,
                     State = status,

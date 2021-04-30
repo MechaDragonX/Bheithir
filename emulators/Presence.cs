@@ -6,10 +6,12 @@ namespace Bheithir.Emulators
 {
     abstract class Presence
     {
-        protected DiscordRpcClient client;
-        protected string windowTitle;
-        protected Regex windowPattern;
-        public Process Process { get; set; }
+        protected DiscordRpcClient Client;
+        protected string DiscordAppId;
+        protected string WindowTitle;
+        protected Regex WindowPattern;
+        protected Process Process;
+        public string ProcessName { get; set; }
 
         public Presence() { }
         

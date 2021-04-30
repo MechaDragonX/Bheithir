@@ -11,27 +11,29 @@ namespace Bheithir.Emulators
     {
         public Fusion()
         {
-            windowPattern = new Regex("(\\s-\\s)", RegexOptions.Compiled);
+            DiscordAppId = "835587751239090187";
+            ProcessName = "Fusion";
+            WindowPattern = new Regex("(\\s-\\s)", RegexOptions.Compiled);
         }
 
         public override void Initialize()
         {
-            client = new DiscordRpcClient("835587751239090187");
+            Client = new DiscordRpcClient(DiscordAppId);
 
-            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith("Fusion")).Any())
+            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).Any())
             {
                 Console.WriteLine("Fusion was not found! Is it open?");
                 return;
             }
-            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("Fusion")).ToList()[0];
-            windowTitle = Process.MainWindowTitle;
+            Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).ToList()[0];
+            WindowTitle = Process.MainWindowTitle;
 
-            client.OnReady += (sender, e) => { };
-            client.OnPresenceUpdate += (sender, e) => { };
+            Client.OnReady += (sender, e) => { };
+            Client.OnPresenceUpdate += (sender, e) => { };
 
             try
             {
-                client.Initialize();
+                Client.Initialize();
                 Console.WriteLine("Successfully connected to client!");
             }
             catch (Exception e)
@@ -49,14 +51,14 @@ namespace Bheithir.Emulators
         }
         public override void Update()
         {
-            client.OnPresenceUpdate += (sender, e) => { };
-            client.Invoke();
+            Client.OnPresenceUpdate += (sender, e) => { };
+            Client.Invoke();
             OnUpdate();
         }
         public override void Deinitialize()
         {
-            client.ClearPresence();
-            client.Dispose();
+            Client.ClearPresence();
+            Client.Dispose();
         }
 
         public override void OnUpdate()
@@ -64,20 +66,20 @@ namespace Bheithir.Emulators
             Process process;
             try
             {
-                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith("Fusion")).ToList()[0];
+                process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).ToList()[0];
             }
             catch (Exception) { return; }
 
-            if(process.MainWindowTitle != windowTitle)
+            if(process.MainWindowTitle != WindowTitle)
             {
                 Process = process;
-                windowTitle = Process.MainWindowTitle;
+                WindowTitle = Process.MainWindowTitle;
                 SetNewPresence();
             }
         }
         public override void SetNewPresence()
         {
-            List<string> titleParts = windowPattern.Split(windowTitle).ToList();
+            List<string> titleParts = WindowPattern.Split(WindowTitle).ToList();
             titleParts.RemoveAll(x => x == " - ");
             string details;
             try
@@ -129,7 +131,7 @@ namespace Bheithir.Emulators
 
             try
             {
-                client.SetPresence(new RichPresence
+                Client.SetPresence(new RichPresence
                 {
                     Details = details,
                     State = status,

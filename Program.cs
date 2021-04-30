@@ -8,7 +8,7 @@ namespace Bheithir
 {
     class Program
     {
-        private static Dictionary<string, Presence> emulators = new Dictionary<string, Presence>()
+        private static readonly Dictionary<string, Presence> emulators = new Dictionary<string, Presence>()
         {
             { "dosbox", new DosBox() },
             { "fceux", new Fceux() },
@@ -34,13 +34,18 @@ namespace Bheithir
             Console.ResetColor();
 
             Presence presence = emulators[emulator];
-            presence.Initialize();
-            if(!Process.GetProcesses().Where(x => x.ProcessName == presence.Process.ProcessName).Any())
+
+            if (!Process.GetProcesses().Where(x => x.ProcessName.StartsWith(presence.ProcessName)).Any())
+            {
+                Console.WriteLine("The specified emulator was not found! Is it open?");
                 return;
+            }
+
+            presence.Initialize();
             while(true)
             {
                 presence.Update();
-                if(!Process.GetProcesses().Where(x => x.ProcessName == presence.Process.ProcessName).Any())
+                if(!Process.GetProcesses().Where(x => x.ProcessName == presence.ProcessName).Any())
                 {
                     presence.Deinitialize();
                     Console.WriteLine("Thanks for using Bheithir!");
