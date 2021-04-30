@@ -14,7 +14,8 @@ namespace Bheithir
             { "fceux", new Fceux() },
             { "snes9x", new Snes9x() },
             { "fusion", new Fusion() },
-            { "vbam", new Vbam() }
+            { "vbam", new Vbam() },
+            { "mame", new Mame() }
         };
 
         private static void Main(string[] args)
