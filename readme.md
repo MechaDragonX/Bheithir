@@ -69,6 +69,10 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 - VBA-M
     - x86 (32-bit), x86_64 (64-bit)
     - v2.1.4
+- MAME
+    - x86_64 (64-bit)
+        - 32-bit builds are no longer provided, but it may work with older 32-bit versions since the program looks for programs open that start with "mame", not "mame64".
+    - v0.220
 
 ## How do I run it?
 - Open Discord and make sure you are signed in.
