@@ -20,11 +20,6 @@ namespace Bheithir.Emulators
         {
             Client = new DiscordRpcClient(DiscordAppId);
 
-            if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).Any())
-            {
-                Console.WriteLine("Fusion was not found! Is it open?");
-                return;
-            }
             Process = Process.GetProcesses().Where(x => x.ProcessName.StartsWith(ProcessName)).ToList()[0];
             WindowTitle = Process.MainWindowTitle;
 
