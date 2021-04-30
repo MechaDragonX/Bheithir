@@ -33,14 +33,19 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
     - Multi-system, focused on TAS creation, supports [Libretro](https://docs.libretro.com/) cores (less accurately, but more popularly, referred to as [RetroArch](https://www.retroarch.com/) cores)
     - [List of supported systems](https://emulation.gametechwiki.com/index.php/BizHawk#Supported_systems)
 
-## How do I run it?
+## What do I need to do/know before I run it?
 - You can get the latest binary from the [releases](https://github.com/MechaDragonX/Bheithir/releases) pages.
 - **All builds are framework-dependent!** Please follow the instructions for your OS to download .NET [here](https://dotnet.microsoft.com/download/dotnet/).
 - Bheithir runs on it's own and is entirely seperate from all emulators supported. **This is not a plugin!**
 - Bheithir works with all versions of these emulators after the first release where support was added.
     - Since this program is dependant on the text in the window title, it is possible earlier or future releases are not supported.
     - If the presence does not look right, please leave an [issue](https://github.com/MechaDragonX/Bheithir/issues)!
-
+- The presence isn't showing up at all!!
+    - Setting RPC status is only supported if you have the desktop app (Spotify RPC is an exception).
+    - Open Discord and go to Settings (click the cog wheel next to your username, and the mute and deafen buttons).
+    - Select "Game Activity" under "Gaming Settings" in the sidebar.
+    - Make sure this option is selected. If not, game RPC will not display.
+![Display running game as status](https://i.imgur.com/jRIGHbK.png "Display running game as status")
 ### Earliest Known Supported Versions
 - OS
     - Windows 7 x86 (32-bit)
@@ -64,6 +69,14 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 - VBA-M
     - x86 (32-bit), x86_64 (64-bit)
     - v2.1.4
+
+## How do I run it?
+- Open Discord and make sure you are signed in.
+- Open the emulator of your choice. You don't have to open a ROM/ISO yet.
+- Open Bheithir either by double-clikcing it in File Explorer or running it from the command line.
+- Follow the instructions in the program, and if nothing goes wrong, you're all set!
+- **You must open Bheithir after you open the emulator, as it checks to see if the emulator you selected is open. If not, the program will close!**
+![CLI Execution](https://i.imgur.com/tct0D5Y.png "CLI Execution")
 
 ## Is it functional?
 At the moment it should be... Check the [issues](https://github.com/MechaDragonX/Bheithir/issues) tab for any issues.
