@@ -5,7 +5,7 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 
 ## What emulators are supported right now?
 - [DOSBox](https://www.dosbox.com/)
-    - [MS-DOS](https://en.wikipedia.org/wiki/MS-DOS) emulator primarilly designed for playing games
+    - [MS-DOS](https://en.wikipedia.org/wiki/MS-DOS) emulator primarily designed for playing games
 - [FCEUX](http://www.fceux.com/web/home.html)
     - [NES](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System)
 - [SNES9X](http://www.snes9x.com/)
@@ -36,16 +36,16 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 ## What do I need to do/know before I run it?
 - You can get the latest binary from the [releases](https://github.com/MechaDragonX/Bheithir/releases) pages.
 - **All builds are framework-dependent!** Please follow the instructions for your OS to download .NET [here](https://dotnet.microsoft.com/download/dotnet/).
-- Bheithir runs on it's own and is entirely seperate from all emulators supported. **This is not a plugin!**
+- Bheithir runs on its own and is entirely seperate from all emulators supported. **This is not a plugin!**
 - Bheithir works with all versions of these emulators after the first release where support was added.
     - Since this program is dependant on the text in the window title, it is possible earlier or future releases are not supported.
     - If the presence does not look right, please leave an [issue](https://github.com/MechaDragonX/Bheithir/issues)!
-- The presence isn't showing up at all!!
+- The presence isn't showing up at all!
     - Setting RPC status is only supported if you have the desktop app (Spotify RPC is an exception).
     - Open Discord and go to Settings (click the cog wheel next to your username, and the mute and deafen buttons).
-    - Select "Game Activity" under "Gaming Settings" in the sidebar.
+    - Select "Activity Privacy" under "Activity Settings" in the sidebar.
     - Make sure this option is selected. If not, game RPC will not display.
-![Display running game as status](https://i.imgur.com/jRIGHbK.png "Display running game as status")
+![Display current activity as a status message](https://i.imgur.com/G2n0aJO.png "Display current activity as a status message")
 ### Earliest Known Supported Versions
 - OS
     - Windows 7 x86 (32-bit)
@@ -86,10 +86,10 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 At the moment it should be... Check the [issues](https://github.com/MechaDragonX/Bheithir/issues) tab for any issues.
 
 ## What the hell is this name?
-Since the first emulator I supported, DOSBox, is an emulator for MS-DOS, an American operating system, I decided to go with a name influenced by British mythology and folklore, as America shares a lot with Britian culturally. Bheithir is a dragon who was though to be a representation of the [Celtic goddess of storms, winter, death, and darkness](https://books.google.com/books?id=XPoRSLTkhtsC&pg=PA179&lpg=PA179&dq=bheithir+scotland&source=bl&ots=h2FaVFtlKN&sig=ACfU3U0fPo-tvlrPfv6CW9OVvdrHlOE66g&hl=en&ppis=_e&sa=X&ved=2ahUKEwjKiInks77oAhWuGTQIHZbbAToQ6AEwCXoECB4QAQ#v=onepage&q=bheithir%20scotland&f=false). It is said it once resided in the Scottish mountain, [Beinn a' Bheithir](https://en.wikipedia.org/wiki/Beinn_a%27_Bheithir), the Mountain of the Thunderbolt, where it was tricked and killed after terrorizing the villagers at the bottom of the mountain for a long time.
+Since the first emulator I supported, DOSBox, is an emulator for MS-DOS, an American operating system, I decided to go with a name influenced by British mythology and folklore, as America shares a lot with Britain culturally. Bheithir is a dragon who was thought to be a representation of the [Celtic goddess of storms, winter, death, and darkness](https://books.google.com/books?id=XPoRSLTkhtsC&pg=PA179&lpg=PA179&dq=bheithir+scotland&source=bl&ots=h2FaVFtlKN&sig=ACfU3U0fPo-tvlrPfv6CW9OVvdrHlOE66g&hl=en&ppis=_e&sa=X&ved=2ahUKEwjKiInks77oAhWuGTQIHZbbAToQ6AEwCXoECB4QAQ#v=onepage&q=bheithir%20scotland&f=false). It is said it once resided in the Scottish mountains, [Beinn a' Bheithir](https://en.wikipedia.org/wiki/Beinn_a%27_Bheithir), the Mountain of the Thunderbolt, where it was tricked and killed after terrorizing the villagers at the bottom of the mountain for a long time.
 
 ## When will this be done?
-Well...it's functional, but it doesn't look the way I want it to or have all the features I want it to...so let's say it's *in progress*.
+Well... it's functional, but it doesn't look the way I want it to or have all the features I want it to... so let's say it's *in progress*.
 
 ## Upcoming Features
 - A program icon
