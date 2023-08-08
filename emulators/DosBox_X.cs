@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -75,52 +76,66 @@ namespace Bheithir.Emulators
         }
         public override void SetNewPresence()
         {
-            List<string> titleParts = WindowPattern.Split(WindowTitle).ToList();
-            for (int i = 0; i < titleParts.Count; i++)
+            char[] delimiters = { ':', '[', ']' };
+            string[] titleParts = WindowTitle.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            if (titleParts.Length >= 2)
             {
-                if (titleParts[i] == ", ")
+                string part1 = titleParts[0].Trim();
+                string[] part2Parts = titleParts[1].Split(new[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+                string part2 = part2Parts.Length > 0 ? part2Parts[0].Trim() : "";
+                string part3 = part2Parts.Length > 1 ? part2Parts[1].Trim() : "";
+
+                string details;
+                try
                 {
-                    titleParts.Remove(titleParts[i]);
-                    i--;
+                    if (titleParts[1].Contains("COMMAND"))
+                        details = "Idling in the Command Line";
+                    else
+                        details = part2;
                 }
-            }
-
-            string details;
-            try
-            {
-                if (Regex.Split(titleParts[3], "\\s+")[1] == "DOSBOX_X")
-                    details = "Idling in the Command Line";
-                else
-                    details = Regex.Split(titleParts[3], "\\s+")[1];
-            }
-            catch (Exception) { return; }
-
-            string status;
-            try
-            {
-                status = new StringBuilder($"v{titleParts[0].Split(' ')[1]}").AppendFormat(", {0}, {1}", titleParts[1], titleParts[2]).ToString();
-            }
-            catch (Exception) { return; }
-
-            try
-            {
-                Client.SetPresence(new RichPresence
+                catch (Exception c)
                 {
-                    Details = details,
-                    State = status,
-                    Timestamps = new Timestamps(DateTime.UtcNow),
-                    Assets = new Assets()
+                    Console.WriteLine(c);
+                    return;
+                }
+
+
+                string status;
+                try
+                {
+                    status = part3;
+                }
+                catch (Exception c)
+                {
+                    Console.WriteLine(c);
+                    return;
+                }
+
+                try
+                {
+                    Client.SetPresence(new RichPresence
                     {
-                        LargeImageKey = "dos",
-                        LargeImageText = "DOSBox-X"
-                    }
-                });
-                Console.WriteLine("Presence successfully set!");
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Presence was not set successfully!");
-                return;
+                        Details = details,
+                        State = status,
+                        Timestamps = new Timestamps(DateTime.UtcNow),
+                        Assets = new Assets()
+                        {
+                            LargeImageKey = "dos",
+                            LargeImageText = "DOSBox-X"
+                        }
+                    });
+                    Console.WriteLine("Presence successfully set!");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Presence was not set successfully!");
+                    return;
+                }
+
+                Console.WriteLine("titleParts[0]: " + part1);
+                Console.WriteLine("titleParts[1]: " + part2);
+                Console.WriteLine("titleParts[2]: " + part3);
             }
         }
     }
