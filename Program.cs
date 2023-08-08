@@ -11,6 +11,7 @@ namespace Bheithir
         private static readonly Dictionary<string, Presence> emulators = new Dictionary<string, Presence>()
         {
             { "dosbox", new DosBox() },
+            { "dosbox-x", new DosBox_X() },
             { "fceux", new Fceux() },
             { "snes9x", new Snes9x() },
             { "fusion", new Fusion() },
