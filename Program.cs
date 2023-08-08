@@ -23,31 +23,51 @@ namespace Bheithir
         {
             bool success = false;
             string emulator = "";
-            while(!success)
+
+            if (args.Length > 0)
             {
-                Console.WriteLine("What emulator are you using?");
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                emulator = Console.ReadLine().ToLower();
-                if(emulators.ContainsKey(emulator))
-                    break;
-                Console.ResetColor();
-                Console.WriteLine("You misspelled the emulator name or that emulator is not supported!\n");
+                emulator = args[0].ToLower();
+                if (!emulators.ContainsKey(emulator))
+                {
+                    Console.WriteLine("The specified emulator is not supported!");
+                    return;
+                }
+                else
+                {
+                    success = true;
+                }
             }
-            Console.ResetColor();
+            else
+            {
+                while (!success)
+                {
+                    Console.WriteLine("What emulator are you using?");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    emulator = Console.ReadLine().ToLower();
+                    if (emulators.ContainsKey(emulator))
+                        success = true;
+                    else
+                    {
+                        Console.ResetColor();
+                        Console.WriteLine("You misspelled the emulator name or that emulator is not supported!\n");
+                    }
+                }
+                Console.ResetColor();
+            }
 
             Presence presence = emulators[emulator];
 
-            if (!Process.GetProcesses().Where(x => x.ProcessName.StartsWith(presence.ProcessName)).Any())
+            if (!Process.GetProcesses().Any(x => x.ProcessName.StartsWith(presence.ProcessName)))
             {
                 Console.WriteLine("The specified emulator was not found! Is it open?");
                 return;
             }
 
             presence.Initialize();
-            while(true)
+            while (true)
             {
                 presence.Update();
-                if(!Process.GetProcesses().Where(x => x.ProcessName.StartsWith(presence.ProcessName)).Any())
+                if (!Process.GetProcesses().Any(x => x.ProcessName.StartsWith(presence.ProcessName)))
                 {
                     presence.Deinitialize();
                     Console.WriteLine("Thanks for using Bheithir!");

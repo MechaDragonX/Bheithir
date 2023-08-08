@@ -132,10 +132,6 @@ namespace Bheithir.Emulators
                     Console.WriteLine("Presence was not set successfully!");
                     return;
                 }
-
-                Console.WriteLine("titleParts[0]: " + part1);
-                Console.WriteLine("titleParts[1]: " + part2);
-                Console.WriteLine("titleParts[2]: " + part3);
             }
         }
     }
