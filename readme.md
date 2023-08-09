@@ -6,6 +6,8 @@ Bheithir is a program that sets Discord Rich Presence (RPC) status for various e
 ## What emulators are supported right now?
 - [DOSBox](https://www.dosbox.com/)
     - [MS-DOS](https://en.wikipedia.org/wiki/MS-DOS) emulator primarilly designed for playing games
+- [DOSBox-X](https://dosbox-x.com/)
+    - Fork of [DOSBox](https://www.dosbox.com/) an [MS-DOS](https://en.wikipedia.org/wiki/MS-DOS) emulator primarilly designed for playing games
 - [FCEUX](http://www.fceux.com/web/home.html)
     - [NES](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System)
 - [SNES9X](http://www.snes9x.com/)
