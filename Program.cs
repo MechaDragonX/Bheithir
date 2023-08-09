@@ -26,33 +26,44 @@ namespace Bheithir
 
             if (args.Length > 0)
             {
-                emulator = args[0].ToLower();
-                if (!emulators.ContainsKey(emulator))
+                for (int i = 0; i < args.Length; i++)
                 {
-                    Console.WriteLine("The specified emulator is not supported!");
-                    return;
-                }
-                else
-                {
-                    success = true;
+                    if (args[i].StartsWith("-"))
+                    {
+                        string flag = args[i].Substring(1).ToLower();
+                        if (emulators.ContainsKey(flag))
+                        {
+                            emulator = flag;
+                            success = true;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("The specified emulator is not supported!");
+                            return;
+                        }
+                    }
                 }
             }
-            else
+
+            if (!success)
             {
                 while (!success)
                 {
                     Console.WriteLine("What emulator are you using?");
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     emulator = Console.ReadLine().ToLower();
+                    Console.ResetColor();
+
                     if (emulators.ContainsKey(emulator))
+                    {
                         success = true;
+                    }
                     else
                     {
-                        Console.ResetColor();
                         Console.WriteLine("You misspelled the emulator name or that emulator is not supported!\n");
                     }
                 }
-                Console.ResetColor();
             }
 
             Presence presence = emulators[emulator];
