@@ -11,7 +11,7 @@ namespace Bheithir.Emulators
         public Fceux()
         {
             DiscordAppId = "693692813321437247";
-            ProcessName = "fcuex";
+            ProcessName = "fceux";
             WindowPattern = new Regex("(:\\s)+", RegexOptions.Compiled);
         }
 
